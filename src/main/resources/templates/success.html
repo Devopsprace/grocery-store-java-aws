@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Placed</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container small center-box">
+    <div class="card success-card">
+        <h1>Order placed successfully</h1>
+        <p>Thank you, <strong th:text="${customerName}">Customer</strong>.</p>
+        <p>Your demo grocery order has been received.</p>
+        <h3>Total Paid: ₹ <span th:text="${total}">0</span></h3>
+        <a class="button" th:href="@{/products}">Shop again</a>
+    </div>
+</div>
+</body>
+</html>

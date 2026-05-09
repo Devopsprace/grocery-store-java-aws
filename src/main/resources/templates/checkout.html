@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container small">
+    <header class="topbar">
+        <h1>Checkout</h1>
+        <a class="button secondary" th:href="@{/cart}">Back to cart</a>
+    </header>
+
+    <div class="checkout-layout">
+        <section class="card form-card">
+            <h2>Delivery details</h2>
+            <form th:action="@{/checkout}" th:object="${checkoutForm}" method="post">
+                <label>Name</label>
+                <input type="text" th:field="*{customerName}" placeholder="Your full name">
+                <small class="error" th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}"></small>
+
+                <label>Address</label>
+                <textarea th:field="*{address}" placeholder="Flat, street, area, city"></textarea>
+                <small class="error" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></small>
+
+                <label>Phone</label>
+                <input type="text" th:field="*{phone}" placeholder="10 digit mobile number">
+                <small class="error" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></small>
+
+                <button class="button" type="submit">Place order</button>
+            </form>
+        </section>
+
+        <section class="card summary-card">
+            <h2>Order summary</h2>
+            <div class="summary-line" th:each="item : ${items}">
+                <span th:text="${item.product.name() + ' x ' + item.quantity}">Item</span>
+                <strong>₹ <span th:text="${item.lineTotal}">0</span></strong>
+            </div>
+            <hr>
+            <div class="summary-line total-line">
+                <span>Total</span>
+                <strong>₹ <span th:text="${total}">0</span></strong>
+            </div>
+        </section>
+    </div>
+</div>
+</body>
+</html>

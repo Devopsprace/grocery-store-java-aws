@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container small">
+    <header class="topbar">
+        <h1>Your Cart</h1>
+        <a class="button secondary" th:href="@{/products}">Continue shopping</a>
+    </header>
+
+    <div th:if="${itemCount == 0}" class="empty-box">
+        <p>Your cart is empty.</p>
+    </div>
+
+    <div th:if="${itemCount > 0}">
+        <table>
+            <thead>
+            <tr>
+                <th>Item</th>
+                <th>Qty</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${items}">
+                <td th:text="${item.product.name()}">Name</td>
+                <td th:text="${item.quantity}">1</td>
+                <td>₹ <span th:text="${item.product.price()}">0</span></td>
+                <td>₹ <span th:text="${item.lineTotal}">0</span></td>
+                <td>
+                    <form th:action="@{'/cart/remove/' + ${item.product.id()}}" method="post">
+                        <button class="link-btn" type="submit">Remove</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="summary-box">
+            <h3>Grand Total: ₹ <span th:text="${total}">0</span></h3>
+            <a class="button" th:href="@{/checkout}">Proceed to checkout</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

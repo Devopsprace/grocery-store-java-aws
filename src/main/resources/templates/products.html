@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Grocery Store</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <header class="topbar">
+        <div>
+            <h1>FreshBasket</h1>
+            <p>Small Java grocery buying project</p>
+        </div>
+        <a class="button secondary" th:href="@{/cart}">Cart (<span th:text="${itemCount}">0</span>)</a>
+    </header>
+
+    <section class="hero">
+        <h2>Buy groceries online</h2>
+        <p>Pick items, review your cart, and place a demo order.</p>
+    </section>
+
+    <section class="grid">
+        <article class="card" th:each="product : ${products}">
+            <div class="pill" th:text="${product.category()}">Category</div>
+            <h3 th:text="${product.name()}">Product name</h3>
+            <p th:text="${product.description()}">Description</p>
+            <div class="price-row">
+                <span class="price">₹ <span th:text="${product.price()}">0</span></span>
+                <span class="unit" th:text="${product.unit()}">1 kg</span>
+            </div>
+            <form th:action="@{'/cart/add/' + ${product.id()}}" method="post">
+                <button class="button" type="submit">Add to cart</button>
+            </form>
+        </article>
+    </section>
+</div>
+</body>
+</html>
