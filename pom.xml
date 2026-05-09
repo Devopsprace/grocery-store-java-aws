@@ -13,7 +13,7 @@
     <groupId>com.example</groupId>
     <artifactId>grocery-store-java-aws</artifactId>
     <version>1.0.0</version>
-    <packaging> jar </packagin>     
+    <packaging>jar</packaging>     
     <name>grocery-store-java-aws</name>
     <description>Small online grocery buying project for AWS deployment</description>
     <properties>
