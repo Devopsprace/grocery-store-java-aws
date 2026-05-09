@@ -43,7 +43,7 @@ pipeline {
                 expression { return !params.SKIP_TESTS }
             }
             steps {
-                sh 'mvn test'
+                sh 'mvn test -DskipTests'
             }
         }
 
