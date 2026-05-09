@@ -38,7 +38,7 @@ pipeline {
             }
         }
 
-        stage('Test') {
+        stage('Mevan Test') {
             when {
                 expression { return !params.SKIP_TESTS }
             }
