@@ -30,6 +30,7 @@ http://localhost:8080
 ```
 ##Port Need to change
 ## Build JAR
+##Data
 ```bash
 mvn clean package
 java -jar target/grocery-store-java-aws-1.0.0.jar
