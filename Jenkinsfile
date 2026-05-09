@@ -9,7 +9,7 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
+        stage('Checkout Code ...') {
             steps {
                 echo 'Checking out source code'
                 cleanWs deleteDirs: true, notFailBuild: true
